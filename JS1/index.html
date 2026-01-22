@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher temperature</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="maZone">
+        <h1>Mon titre</h1>
+        <p id="temp"></p>
+        <p id="textZone"></p>
+    </section>
+    <script>
+        //Generation du tableau de valeurs aléatoire
+        var A_tableauTemp = [];
+        for (let I_index = 0; I_index < 20; I_index++)
+        {
+            A_tableauTemp.push(Math.floor(Math.random()*50) -10 );
+        }
+        //Récupétation de l'ID
+        var O_id = document.getElementById("temp");
+        var O_text = document.getElementById("textZone");
+        //Index pour le tableau
+        let index = 0;
+        const interval = setInterval(() => 
+        {
+            O_id.textContent = A_tableauTemp[index];
+            if (A_tableauTemp[index] <= 0){
+                O_id.setAttribute('class', "blue");
+                O_text.textContent("Brrrrrrr, un peu froid ce matin, mets ta cagoule !")
+            }
+            else if(A_tableauTemp[index] > 0 && A_tableauTemp[index] <= 20 ){
+                O_id.setAttribute('class', "green");
+            }
+            else if(A_tableauTemp[index] > 20 && A_tableauTemp[index] <= 30 ){
+                O_id.setAttribute('class', "orange");
+            }
+            else if(A_tableauTemp[index] > 30 && A_tableauTemp[index] <= 40 ){
+                O_id.setAttribute('class', "red");
+                O_text.textContent("Caliente ! Vamos a la playa, ho hoho hoho !!")
+            }
+            index++;
+        }, 2000);
+</script>
+</body>
+</html>
