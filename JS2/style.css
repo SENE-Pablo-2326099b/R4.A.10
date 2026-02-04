@@ -1,0 +1,12 @@
+.temperature_cold { 
+    color: blue; font-weight: bold; 
+}
+.temperature_mild { 
+    color: green; 
+}
+.temperature_warm { 
+    color: orange; 
+}
+.temperature_hot { 
+    color: red; font-size: 1.2em; 
+}

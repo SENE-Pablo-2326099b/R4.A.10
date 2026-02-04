@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afficher temperature</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <nav role="tablist">
+        <button id="btn-direct" role="tab" aria-selected="true">Direct</button>
+        <button id="btn-hist" role="tab" aria-selected="false">Historique</button>
+    </nav>
+    <div id="panel-direct" role="tabpanel">
+        <p>Valeur : <span id="temp">-- °C</span></p>
+        <p id="textZone"></p>
+    </div>
+    <div id="panel-hist" role="tabpanel" style="display:none">
+        <ul id="history"></ul>
+    </div>
+    <script type="module" src="/JS2/js/main.js"></script>
+</html>
+</html> 
