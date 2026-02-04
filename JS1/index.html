@@ -8,10 +8,13 @@
 </head>
 <body>
     <section id="maZone">
-        <h1>Mon titre</h1>
-        <p id="temp"></p>
+        <h1>Température actuelle</h1>
+        <p>Valeur : <span id="temp" class="temperature" data-unit="°C"></span></p>
         <p id="textZone"></p>
     </section>
+    <h2>Historique des températures :</h2>
+    <ul id="history"></ul>
+
     <script>
         //Generation du tableau de valeurs aléatoire
         var A_tableauTemp = [];
@@ -24,25 +27,32 @@
         var O_text = document.getElementById("textZone");
         //Index pour le tableau
         let index = 0;
-        const interval = setInterval(() => 
-        {
-            O_id.textContent = A_tableauTemp[index];
-            if (A_tableauTemp[index] <= 0){
-                O_id.setAttribute('class', "blue");
-                O_text.textContent("Brrrrrrr, un peu froid ce matin, mets ta cagoule !")
-            }
-            else if(A_tableauTemp[index] > 0 && A_tableauTemp[index] <= 20 ){
-                O_id.setAttribute('class', "green");
-            }
-            else if(A_tableauTemp[index] > 20 && A_tableauTemp[index] <= 30 ){
-                O_id.setAttribute('class', "orange");
-            }
-            else if(A_tableauTemp[index] > 30 && A_tableauTemp[index] <= 40 ){
-                O_id.setAttribute('class', "red");
-                O_text.textContent("Caliente ! Vamos a la playa, ho hoho hoho !!")
-            }
-            index++;
-        }, 2000);
+        var O_history = document.getElementById("history");
+
+    const interval = setInterval(() => {
+    let temp = A_tableauTemp[index];
+    O_id.textContent = temp + " °C";
+
+    if(temp <= 0) O_id.className = "temperature_cold";
+    else if(temp <= 20) O_id.className = "temperature_mild";
+    else if(temp <= 30) O_id.className = "temperature_warm";
+    else O_id.className = "temperature_hot";
+
+    if(temp <= 0) O_text.textContent = "Brrrrrrr, un peu froid ce matin !";
+    else if(temp > 30) O_text.textContent = "Caliente ! Vamos a la playa !";
+    else O_text.textContent = "";
+
+    let li = document.createElement("li");
+    li.textContent = temp + " °C";
+    li.className = O_id.className;
+    O_history.appendChild(li);
+
+    index++;
+    if(index >= A_tableauTemp.length){
+        clearInterval(interval);
+        return;
+    }
+}, 2000);
 </script>
 </body>
 </html>
